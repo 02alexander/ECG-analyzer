@@ -1,4 +1,4 @@
-function [new_peaks_indices] = remove_double_peaks(peaks_indices, timestamps)
+function new_peaks_indices = remove_double_peaks(peaks_indices, timestamps)
 %UNTITLED2 Summary of this function goes here
 %   Detailed explanation goes here
 

@@ -4,10 +4,11 @@ function peaks_indices = find_QRS_peaks(ecg_data, threshold)
 % signalstyrkan inte ökar. Detta kan göras genom att t.ex subtrahera med movmean.
 
 maxv = max(ecg_data);
+minv = min(ecg_data);
 
 peaks_indices = [];
 
-peaks = find(ecg_data/maxv > threshold);
+peaks = find(ecg_data/maxv > threshold)
 consecutive_sequences = [];
 
 i = 1;
@@ -20,10 +21,14 @@ while i < numel(peaks)
     %disp(["interval ", start, " ", i]);
     [m, idx] = max( ecg_data(peaks(start:i)) );
     %disp(m)
-    peaks_indices(end+1) = peaks(start)+idx-1;
+
+    if (min(ecg_data(peaks(i):peaks(i)+50)) < -0.7) 
+        peaks_indices(end+1) = peaks(start)+idx-1;
+    end
     i = i + 1;
     
 end
+
 
 
 end

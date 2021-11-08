@@ -1,6 +1,5 @@
 function [pulse, indices] = pulse_time_window(ecg_data,time_stamps, threshold, t)
-%UNTITLED Summary of this function goes here
-%   Detailed explanation goes here
+
 
 peaks_indices = find_QRS_peaks(ecg_data, threshold);
 peaks_indices = remove_double_peaks(peaks_indices, time_stamps);
