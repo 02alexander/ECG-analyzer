@@ -28,7 +28,7 @@ while i < numel(peaks)
 
     ed = min([peaks(start)+idx-1+30, numel(ecg_data)]);
     %ed = min([peaks(i)+30, numel(ecg_data)]);
-    if ( (m - min(ecg_data(peaks(i):ed)))/dv > 0.5) 
+    if ( (m - min(ecg_data(peaks(i):ed)))/dv > 0.2) 
         peaks_indices(end+1) = peaks(start)+idx-1;
     end
     i = i + 1;

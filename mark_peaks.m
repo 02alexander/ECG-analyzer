@@ -1,5 +1,6 @@
 
-load fys_ruben.mat
+load fys_oskar.mat
+%load fys_ruben.mat
 %load oskardata.mat
 %load oxymeter_oskar.csv
 
@@ -8,8 +9,8 @@ load fys_ruben.mat
 ecg_data = Shimmer_9DF2_ECG_LL_LA_24BIT_CAL;
 %ecg_data = Shimmer_9DF2_ECG_LA_RA_24BIT_CAL;
 %ecg_data = Shimmer_9DF2_ECG_Vx_RL_24BIT_CAL;
-ecg_data = ecg_data-movmean(ecg_data,1000);
-ecg_data = scale_ecg(ecg_data, 2000);
+
+ecg_data = preproc(ecg_data);
 
 %ecg_data = ecg_data(1:5000)
 
