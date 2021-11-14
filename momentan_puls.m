@@ -2,7 +2,7 @@ function [pulse, indices] = momentan_puls(ecg_data, time_stamps, threshold, n)
 
 %display(ecg_data)
 peaks_indices = find_QRS_peaks(ecg_data, threshold);
-peaks_indices = remove_double_peaks(peaks_indices, time_stamps);
+peaks_indices = remove_double_peaks(peaks_indices, time_stamps, ecg_data);
 
 pulse = [];
 indices = [];

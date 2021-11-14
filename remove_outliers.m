@@ -2,7 +2,6 @@ function new_pulse = remove_outliers(pulse)
 
 new_pulse = pulse;
 
-threshold = 0.35;
 
 ma = movmean(pulse, 10);
 

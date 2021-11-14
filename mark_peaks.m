@@ -1,26 +1,13 @@
 
-S = load("fys_oskar.mat");
-%load fys_ruben.mat
-%load oskardata.mat
-%load oxymeter_oskar.csv
-
-%ecg_data = Shimmer_9DF2_ECG_LL_RA_24BIT_CAL-Shimmer_9DF2_ECG_LL_LA_24BIT_CAL;
-%ecg_data = ecg_data-movmean(ecg_data,10000);
-%ecg_data = Shimmer_9DF2_ECG_LL_LA_24BIT_CAL;
+S = load("EKG_Kvinna_Fysisk_Aktivitet.mat");
 ecg_data = load_ecg_var("LL_RA", S);
-%ecg_data = Shimmer_9DF2_ECG_Vx_RL_24BIT_CAL;
 
 timestamps = load_ecg_var("TimestampSync", S);
-
-ecg_data = preproc(ecg_data);
-
-%ecg_data = ecg_data(1:5000)
-
-%display(ecg_data)
-%[pulse, peaks_indices] = momentan_puls(ecg_data, Shimmer_9DF2_TimestampSync_Unix_CAL, 0.35, 8);
+freq = get_freq(timestamps);
+ecg_data = preproc(ecg_data, freq);
 
 peaks_indices = find_QRS_peaks(ecg_data, 0.15);
-peaks_indices = remove_double_peaks(peaks_indices, timestamps);
+peaks_indices = remove_double_peaks(peaks_indices, timestamps, ecg_data);
 
 timestamps = timestamps - timestamps(1);
 timestamps = timestamps/1000;

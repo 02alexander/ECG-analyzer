@@ -1,6 +1,6 @@
-function [outputArg1,outputArg2] = get_freq(inputArg1,inputArg2)
-%UNTITLED2 Summary of this function goes here
-%   Detailed explanation goes here
-outputArg1 = inputArg1;
-outputArg2 = inputArg2;
+function f = get_freq(timestamps)
+
+d = (timestamps(end)-timestamps(1))/(numel(timestamps)*1000);
+f = 1/d;
+
 end
