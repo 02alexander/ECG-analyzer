@@ -10,7 +10,10 @@ for i = 2:numel(peaks_indices)
     end
     %}
     if (timestamps(peaks_indices(i))-timestamps(peaks_indices(i-1)))/1000 < 0.2
-        if ecg_data(peaks_indices(i)) > ecg_data(peaks_indices(i-1))
+        %if ecg_data(peaks_indices(i)) > ecg_data(peaks_indices(i-1))
+        %    new_peaks_indices(end) = peaks_indices(i);
+        %end
+        if sharpness(peaks_indices(i), ecg_data) > sharpness(peaks_indices(i-1), ecg_data)
             new_peaks_indices(end) = peaks_indices(i);
         end
     else

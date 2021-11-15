@@ -1,6 +1,10 @@
 %load fys_ruben.mat
 
-S = load("fys_oskar.mat");
+%S = load("EKG_Kvinna_Fysisk_Aktivitet.mat");
+%S = load("fys_oskar.mat");
+S = load("fys_ruben.mat");
+
+step = 3;
 
 timestamps = load_ecg_var("TimestampSync", S);
 freq = get_freq(timestamps);
@@ -30,7 +34,10 @@ LARA = preproc(LARA, freq) + step*3;
 
 t = (timestamps-timestamps(1))/1000;
 
+disp(amp(LLRA, freq));
+
 hold on
+grid on
 plot(t, VXRL, 'b')
 plot(t, LLRA, 'r')
 plot(t, LLLA, 'g')

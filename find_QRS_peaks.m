@@ -19,13 +19,15 @@ while i < numel(peaks)
     while i+1 < numel(peaks) && peaks(i)+1 == peaks(i+1)
         i = i + 1;
     end
-    %disp(["interval ", start, " ", i]);
     [m, idx] = max( ecg_data(peaks(start:i)) );
-    %disp(m)
 
     ed = min([peaks(start)+idx-1+30, numel(ecg_data)]);
-    %ed = min([peaks(i)+30, numel(ecg_data)]);
-    if ( (m - min(ecg_data(peaks(i):ed))) > 1.0) 
+    st = max([peaks(start)+idx-1-15, 1]);
+
+
+    if (ed >= peaks(i)) && ((m - min(ecg_data(peaks(i):ed))) > 0.4) ... 
+            && ((m-min(ecg_data(st:peaks(start)+idx-1 ))) > 0.2) ...
+            && min(ecg_data(peaks(i):ed)) < -0.2
         peaks_indices(end+1) = peaks(start)+idx-1;
     end
     i = i + 1;
