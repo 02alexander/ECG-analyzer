@@ -1,6 +1,4 @@
 function new_peaks_indices = remove_double_peaks(peaks_indices, timestamps, ecg_data)
-%UNTITLED2 Summary of this function goes here
-%   Detailed explanation goes here
 
 new_peaks_indices = [peaks_indices(1)];
 for i = 2:numel(peaks_indices)
