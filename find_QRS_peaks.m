@@ -3,14 +3,9 @@ function peaks_indices = find_QRS_peaks(ecg_data, threshold)
 % funkar bara om ecg_data har blivit "tillplattad" så att genomsnittliga
 % signalstyrkan inte ökar. Detta kan göras genom att t.ex subtrahera med movmean.
 
-%maxv = max(ecg_data);
-%minv = min(ecg_data);
-%dv = maxv-minv
-
 peaks_indices = [];
 
 peaks = find(ecg_data > threshold);
-consecutive_sequences = [];
 
 i = 1;
 while i < numel(peaks)
@@ -22,7 +17,7 @@ while i < numel(peaks)
     [m, idx] = max( ecg_data(peaks(start:i)) );
 
     ed = min([peaks(start)+idx-1+30, numel(ecg_data)]);
-    st = max([peaks(start)+idx-1-15, 1]);
+    st = max([peaks(start)+idx-1-20, 1]);
 
 
     if (ed >= peaks(i)) && ((m - min(ecg_data(peaks(i):ed))) > 0.4) ... 
